@@ -82,6 +82,15 @@ If it's not valid, an error message with suggestion to go to `/users/<user_id>/r
 - Empty response, if the token is valid.
 - Generic error message in other casese.
 
+When email is confirmed, the user is considered registered. Therefore, in the end of confirmation the service generates a message about the new user and sends it to a message broker with the following fields:
+- `id`
+- `email`
+- `username`
+- `full_name`
+- `localization`
+
+This message is used by other services. For example, the channel service can use it to register the new channel for the user.
+
 ## Resend confirmation
 
 The endpoint resends the same `confirm_token` as during the registration. However, if the user has already confirmed their token, the endpoint responds with an error.

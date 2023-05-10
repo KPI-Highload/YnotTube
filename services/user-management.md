@@ -153,3 +153,16 @@ This endpoint resets the user password. The user should provide the `reset_token
 
 **Output**: JSON object containing the following field:
   - `message`: A confirmation message indicating that the password reset was successful.
+
+## Get access token public key
+
+An endpoint used by other services to retrieve the public key used to sign the access tokens.
+
+**Endpoint**: `GET /keys/access-token-pubkey`
+
+**Input**: None
+
+**Output**: JSON object containing the following field:
+- public_key: The JWT public key.
+
+Additionally, the response can contain some headers for caching the public key. For example, for 10 minutes on the client side.

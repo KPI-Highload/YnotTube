@@ -2,7 +2,7 @@
 
 This service will handle user registration, authentication, and management of user profiles. When a user registers, this service will also create a user channel. It will expose APIs for registration, login, and profile updates.
 
-The service is self-contained on its own. However, it still requires an access to some (possibly external) service for delivering emails.
+The service is self-contained on its own. However, it still requires an access to some (possibly external) service for delivering emails and fast cache for tokens, like Redis.
 
 # DB schema
 
@@ -52,9 +52,11 @@ https://<address>/users/confirm-email?token=<confirm_token>
 
 ## User Login
 
-Authenticates the user. The result of authentication is a short lived JWT `access_token`.
+Authenticates the user.
 
 The endpoint verifies that the account exists and that the password is correct. However, users can login only if they confirmed their email (`email_confirmed` is `true`).
+
+The result of authentication is a short-lived `access_token`. It's generated and saved to the external cache together with user id and expiration time.
 
 **Endpoint**: `POST /users/login`
 
@@ -63,7 +65,7 @@ The endpoint verifies that the account exists and that the password is correct. 
 - `password`: The password for the user's account.
 
 **Output**: JSON object containing the following fields:
-- `access_token`: A JWT for authenticating subsequent requests.
+- `access_token`: A token for authenticating subsequent requests.
 - `user_id`: The unique identifier of the logged-in user.
 - `username`: The username of the logged-in user.
 
@@ -163,15 +165,26 @@ This endpoint resets the user password. The user should provide the `reset_token
 **Output**: JSON object containing the following field:
   - `message`: A confirmation message indicating that the password reset was successful.
 
-## Get access token public key
 
-An endpoint used by other services to retrieve the public key used to sign the access tokens.
+## Logout
 
-**Endpoint**: `GET /keys/access-token-pubkey`
+The endpoint that invalidates the access token. It does so by removing the token from the cache.
 
-**Input**: None
+**Endpoint**: `POST /users/logout`
+
+**Input**: The `access_token` in the Authorization header for authentication.
 
 **Output**: JSON object containing the following field:
-- public_key: The JWT public key.
+- `message`: A confirmation message indicating that the logout was successful.
 
-Additionally, the response can contain some headers for caching the public key. For example, for 10 minutes on the client side.
+## Authenticate user
+
+This endpoint is used by other endpoints to authenticate the user. It does so by checking if the access token provided by the user exists in the cache. If it does, the endpoint extracts the user ID and returns it in the response.
+
+**Endpoint**: `GET /users/auth-check`.
+
+**Input**: The `user_id` parameter in the URL, and the `access_token` in the Authorization header for authentication.
+
+**Output**: JSON object containing the following fields:
+- `is_authenticated`: A boolean value indicating whether the user is authenticated or not.
+- `user_id`: The user ID, if the user is authenticated.

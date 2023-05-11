@@ -21,7 +21,7 @@ An endpoint for registering the like on a video. It does so just by inserting a 
 - `video_id`
 - `timestamp`
 
-**Endpoint**: `POST /videos/video_id/likes`
+**Endpoint**: `POST /videos/video_id/like`
 
 **Input**: The `video_id` parameter in the URL and the `user_id` in the `X-User-Id` header.
 
@@ -32,12 +32,27 @@ An endpoint for registering the like on a video. It does so just by inserting a 
 
 Removes the like from video. It does so by removing the entry in the database with the corresponding `user_id` and `video_id`.
 
-**Endpoint**: `DELETE /videos/<video_id>/likes`
+**Endpoint**: `DELETE /videos/<video_id>/like`
 
 **Input**: The `video_id` parameter in the URL and the `user_id` in the `X-User-Id` header.
 
 **Output**: JSON object containing the following field:
 - `message`: A confirmation message indicating that the like was removed successfully.
+
+## Check if video is liked
+
+An endpoint for checking if a video is liked by a particular user. To do so, the endpoint just verifies if there is a record in database with the given `video_id` and `user_id`.
+
+However, to ensure high availability, the query result is cached for some time in Redis. For example, it may be 10 minutes as users don't often change their mind about some video.
+
+**Endpoint**: `GET /videos/<video_id>/like`
+
+**Input**: The `video_id` parameter in the URL and the `user_id` in the `X-User-Id` header.
+
+**Output**: JSON object containing the following field:
+- `is_liked`: true, if video is liked by this user.
+
+Additionally, the request can contain headers for caching the response for some amount of time.
 
 ## Get Video Likes
 

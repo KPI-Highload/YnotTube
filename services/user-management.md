@@ -188,3 +188,5 @@ This endpoint is used by other endpoints to authenticate the user. It does so by
 **Output**: JSON object containing the following fields:
 - `is_authenticated`: A boolean value indicating whether the user is authenticated or not.
 - `user_id`: The user ID, if the user is authenticated.
+
+The response can contain some HTTP headers for caching the result. For example, the time can vary from 30 seconds to 2 minutes.

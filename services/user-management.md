@@ -56,7 +56,7 @@ Authenticates the user.
 
 The endpoint verifies that the account exists and that the password is correct. However, users can login only if they confirmed their email (`email_confirmed` is `true`).
 
-The result of authentication is a short-lived `access_token`. It's generated and saved to the external cache together with user id and expiration time.
+The result of authentication is a short-lived `access_token`. It's generated as a random string and saved in the external cache together with the `user_id` and expiration time.
 
 **Endpoint**: `POST /users/login`
 

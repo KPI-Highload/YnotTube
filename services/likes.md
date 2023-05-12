@@ -2,6 +2,10 @@
 
 The service is responsible for tracking likes on videos.
 
+As any other service, it requires Redis instance that can be used as a fast cache and that is synced with the Redis instance of the User Management Service (all authentication tokens are synced).
+
+Also, any endpoint that receives the access token in in the Authorization header uses that token to authenticate the user and obtain their ID for further operations.
+
 # DB schema
 
 **Likes**:
@@ -23,7 +27,7 @@ An endpoint for registering the like on a video. It does so just by inserting a 
 
 **Endpoint**: `POST /videos/video_id/like`
 
-**Input**: The `video_id` parameter in the URL and the `user_id` in the `X-User-Id` header.
+**Input**: The `video_id` parameter in the URL and the `access_token` in the `Authorization` header.
 
 **Output**: JSON object containing the following field:
 - `message`: A confirmation message indicating that the like was recorded successfully.
@@ -34,7 +38,7 @@ Removes the like from video. It does so by removing the entry in the database wi
 
 **Endpoint**: `DELETE /videos/<video_id>/like`
 
-**Input**: The `video_id` parameter in the URL and the `user_id` in the `X-User-Id` header.
+**Input**: The `video_id` parameter in the URL and the `access_token` in the `Authorization` header.
 
 **Output**: JSON object containing the following field:
 - `message`: A confirmation message indicating that the like was removed successfully.
@@ -47,7 +51,7 @@ However, to ensure high availability, the query result is cached for some time i
 
 **Endpoint**: `GET /videos/<video_id>/like`
 
-**Input**: The `video_id` parameter in the URL and the `user_id` in the `X-User-Id` header.
+**Input**: The `video_id` parameter in the URL and the `access_token` in the `Authorization` header.
 
 **Output**: JSON object containing the following field:
 - `is_liked`: true, if video is liked by this user.
@@ -76,7 +80,7 @@ Retrieve all liked videos of a particular user. Requesting is paginated and the 
 
 **Input**:
 - The `limit` and `offset` query parameters in URL.
-- The `X-User-Id` with the user id in the headers.
+- The `access_token` in the `Authorization` header.
 
 **Output**: JSON array of `like` objects, each containing the following fields:
 - `videoId`: The ID of the video that was liked

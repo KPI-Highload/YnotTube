@@ -76,10 +76,11 @@ Additional headers for caching the result in the private cache can also be added
 
 Retrieve all liked videos of a particular user. Requesting is paginated and the likes are retrieved from the database ordered from the newest.
 
-**Endpoint**: `GET /videos/likes`
+**Endpoint**: `GET /users/<user_id>/likes`
 
 **Input**:
 - The `limit` and `offset` query parameters in URL.
+- The `user_id` in url path.
 - The `access_token` in the `Authorization` header.
 
 **Output**: JSON array of `like` objects, each containing the following fields:

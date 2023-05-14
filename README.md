@@ -17,7 +17,7 @@ There are in 6 microservices in total. They are:
  - Channels
  - Videos
  - Comments
- - Likes
+ - [Likes](./services/likes.md)
  - Suggestions
 
 Each microservice has access to its own instance of database and cache.

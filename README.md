@@ -32,7 +32,7 @@ Regular YnotTube operations require microservices to be able to communicate betw
 
 Firstly, to cover information that one service occasionally has to get from another we decided to use logical database replication. It works via publishing data stored in microservice database to databases of microservices that might need it. This approach avoids querying data from microservices over the network. Additionally, eliminating these requests mean that database used by those services avoids addtional calls. As our system is read-heavy, this approach should help deal with the load.
 
-Secondly, microservices communicate actions that generate data and do not require response through message brokers. Example of such actions would be a request to create user, which then disseminates message to create new channel via broker. Channel microservice receives such message and completes the action, while user service returns response immediately.
+Secondly, microservices communicate actions that generate data and do not require response through message brokers. Example of such actions would be a request to create user, which then disseminates message to create new channel via broker. Channel microservice receives the message and completes the action, while user service returns response immediately.
 
 ## System monitoring
 

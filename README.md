@@ -22,7 +22,7 @@ There are in 6 microservices in total. They are:
 
 Each microservice has access to its own instance of database and cache.
 
-Apart from API server, It's also important to emphasize on additional elements such as Video Hosting which is used for storing and serving videos and CDN that is ued to cache popular content.
+Apart from API server, It's also important to emphasize on additional elements such as Video Hosting which is used for storing and serving videos and CDN that is used to cache popular content.
 
 ## Interservice Communication
 

@@ -1,6 +1,6 @@
 # Suggestions Microservice
 
-This service implements suggestions of videos. It handles channel creation, channel management, subscription management.
+This service implements suggestions of videos.
 
 As any other service, it requires Redis instance that can be used as a fast cache and that is synced with the Redis instance of the User Management Service (all authentication tokens are synced).
 

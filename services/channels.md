@@ -26,6 +26,24 @@ As any other service, it requires Redis instance that can be used as a fast cach
 | `user_id`    | uuid            | The ID of a user                                   |
 | `channel_id` | string          | Unique ID of a user channel                        |
 
+**Videos (Read-only)**:
+
+
+| Column         | Type            | Description                |
+| -------------- | --------------- | -------------------------- |
+| `id`           | integer or uuid | Unique ID of video         |
+| `title`        | string          | Title of the video         |
+| `desription`   | text            | Video description          |
+| `hosting_link` | string          | Link to the video hosting  |
+| `preview_link` | string          | Link to the preview        |
+| `image_link`   | string          | Video thumbnail            |
+| `duration`     | int             | Duration                   |
+| `size`         | int             | Size of the video          |
+| `created_at`   | timestamp       | The time of video creation |
+| `category_id`  | uuid            | The ID of a category       |
+| `user_id`      | uuid            | The ID of a user           |
+| `channel_id`   | uuid            | The ID of a channel        |
+
 # Endpoints
 
 ## Channel Creation

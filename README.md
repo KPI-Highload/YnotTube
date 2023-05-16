@@ -60,3 +60,8 @@ A list of dependencies for this project:
  - Metrics monitoring - Prometheus
  - Logs aggregation - Loki
  - Data visualisation and log querying - Grafana
+
+
+## Database Schema
+
+![Database](./database/db%20highload.png)

@@ -64,4 +64,4 @@ A list of dependencies for this project:
 
 ## Database Schema
 
-![Database](./database/db%20highload.png)
+![Database](./database/DbHighload.png)

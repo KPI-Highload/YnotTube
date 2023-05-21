@@ -140,7 +140,7 @@ Retrieve all categories.
 
 ## Get List of Videos
 
-An endpoint that allows to search videos by name, category and tags by using ElasticSearch. If optional parameters are not specified - request suggestions from Suggestions Microservice.
+An endpoint that allows to search videos by name, category and tags by using ElasticSearch. If optional parameters are not specified - request is considered to be erroneous.
 
 **Endpoint**: `GET /videos`
 
@@ -149,7 +149,9 @@ Optional parameters:
 - `channel_id`: parameter to specify the channel ID to get the videos of a certain channel or search within the channel
 - `search_query`: string with search query
 - `category`: name of the category
-- `tags`: video tags
+- `tags`: an array of objects containing the following fields:
+  - `tag_id`
+  - `tag_name`
 
 **Output**: JSON object containing the following fields:
 - `title`: the title of the video

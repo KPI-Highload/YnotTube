@@ -92,7 +92,6 @@ An endpoint that allows to obtain a list of all channels of a certain user.
 - `channel_name`: The new channel name.
 - `channel_description`: The new channel description.
 - `created_at`: The creation time of the channel.
-- `content`: The string with comment
 
 ## Subscribe to the channel
 

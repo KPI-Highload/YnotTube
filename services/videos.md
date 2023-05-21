@@ -156,3 +156,15 @@ Optional parameters:
 - `preview_link`: the URL of a preview of the video
 - `image_link`: the URL of a thumbnail of the video
 - `duration`: the length of the video
+
+## Get Video Views
+
+An endpoint that return video views.
+
+**Endpoint**: `GET /videos/<video_id>/views`
+
+**Input**: The `video_id` parameter in the URL
+
+**Output**: JSON object containing the following fields:
+- `video_id`: unique identifier of the video.
+- `views`: amount of views.

@@ -14,11 +14,11 @@ Our team decided to use an internet-facing API gateway concept to act as a load 
 There are in 6 microservices in total. They are:
 
  - [Users](./services/user-management.md)
- - Channels
- - Videos
- - Comments
+ - [Channels](./services/channels.md)
+ - [Videos](./services/videos.md)
+ - [Comments](./services/comments.md)
  - [Likes](./services/likes.md)
- - Suggestions
+ - [Suggestions](./services/suggestions.md)
 
 Each microservice has access to its own instance of database and cache.
 

@@ -89,9 +89,13 @@ An endpoint that allows to retrieve video details, such as title, description an
 - `image_link`: the URL of a thumbnail of the video
 - `duration`: the length of the video
 - `size`: the size of the video
-- `category_id`: the category of the video
+- `category`: object containing the following fields:
+  - `category_id`
+  - `category_name`
 - `channel_id`: the channel of the video
-- `tags`: an array of strings representing the tags or keywords associated with the video
+- `tags`: an array of objects containing the following fields:
+  - `tag_id`
+  - `tag_name`
 
 Additional headers for caching the result in the private cache can also be added for the same amount of time.
 
@@ -101,7 +105,7 @@ An endpoint that edit video details. It does so by updating the entry in the dat
 
 **Endpoint**: `PUT /videos/<video_id>`
 
-**Input**: The `video_id` parameter in the URL, the `access_token` in the `Authorization` header, and JSON object containing the following field: 
+**Input**: The `video_id` parameter in the URL
 
 **Output**: JSON object containing the following fields:
 - `message`: A confirmation message indicating that the video details were edited successfully.
@@ -117,7 +121,6 @@ An endpoint that removes the video. It does so by removing the entry in the data
 **Output**: JSON object containing the following field:
 - `message`: A confirmation message indicating that the video was deleted successfully.
 
-
 ## Get Categories
 
 Retrieve all categories.
@@ -127,3 +130,22 @@ Retrieve all categories.
 **Output**: JSON array of `category` objects, each containing the following fields:
 - `category_id`: the ID of the category
 - `category_name`: the name of category
+
+## Get List of Videos
+
+An endpoint that allows to search videos by name, category and tags. If optional parameters are not specified - request suggestions from Suggestions Microservice.
+
+**Endpoint**: `GET /videos`
+
+**Input**:
+Optional parameters:
+- `channel_id`: parameter to specify the channel ID to get the videos of a certain channel or search within the channel
+- `search_query`: string with search query
+- `category`: name of the category
+- `tags`: video tags
+
+**Output**: JSON object containing the following fields:
+- `title`: the title of the video
+- `preview_link`: the URL of a preview of the video
+- `image_link`: the URL of a thumbnail of the video
+- `duration`: the length of the video

@@ -105,7 +105,14 @@ An endpoint that edit video details. It does so by updating the entry in the dat
 
 **Endpoint**: `PUT /videos/<video_id>`
 
-**Input**: The `video_id` parameter in the URL
+**Input**: The `video_id` parameter in the URL, the `access_token` in the Authorization header, and JSON object containing the following optional fields:           
+- `title`: the new title of the newly added video
+- `desription`: the new description of the newly added video
+- `preview_link`: the URL of a preview of the newly added video
+- `image_link`: the URL of a thumbnail of the newly added video
+- `category_id`: the category of the newly added video
+- `tags`: an array of strings representing the tags or keywords associated with the newly added video
+
 
 **Output**: JSON object containing the following fields:
 - `message`: A confirmation message indicating that the video details were edited successfully.
@@ -133,7 +140,7 @@ Retrieve all categories.
 
 ## Get List of Videos
 
-An endpoint that allows to search videos by name, category and tags. If optional parameters are not specified - request suggestions from Suggestions Microservice.
+An endpoint that allows to search videos by name, category and tags by using ElasticSearch. If optional parameters are not specified - request suggestions from Suggestions Microservice.
 
 **Endpoint**: `GET /videos`
 

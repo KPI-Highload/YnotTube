@@ -26,7 +26,7 @@ Apart from API server, It's also important to emphasize on additional elements s
 
 ## Interservice Communication
 
-Regular YnotTube operations require microservices to be able to communicate between themselfs. To achieve that, we chose two-fold approach.
+Regular YnotTube operations require microservices to be able to communicate between themselves. To achieve that, we chose two-fold approach.
 
 ![Microservices Operations](./overview/DatabaseReplication.drawio.png)
 
